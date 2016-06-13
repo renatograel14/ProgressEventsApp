@@ -1,15 +1,120 @@
 {
   "type": "kendo-ui-mobile",
-  "isNew": true,
+  "views": [
+    {
+      "type": "kendo-ui-mobile:view",
+      "name": "home",
+      "components": [],
+      "title": "Progress Exchange 2016",
+      "addToNavigation": true,
+      "icon": "home"
+    },
+    {
+      "type": "kendo-ui-mobile:view",
+      "name": "loginView",
+      "components": [
+        {
+          "type": "kendo-ui-mobile:authentication",
+          "name": "loginViewModel",
+          "dataProvider": "progressExchange2016Novo",
+          "emailLabel": "Email",
+          "passwordLabel": "Password",
+          "signinLabel": "Sign In",
+          "signinRedirect": "events",
+          "enableRegistration": true,
+          "gotoRegisterLabel": "Resgistrar",
+          "registerEmailLabel": "Email",
+          "registerPasswordLabel": "Password",
+          "registerNameLabel": "Name",
+          "registerLabel": "Registertrargistrar",
+          "registerRedirect": "home",
+          "gotoSigninLabel": "Sign In",
+          "enableLogout": true,
+          "logoutLabel": "Logout",
+          "enableRememberme": true,
+          "remembermeLabel": "Remember Me"
+        }
+      ],
+      "title": "Login Exchange",
+      "addToNavigation": false
+    },
+    {
+      "type": "kendo-ui-mobile:view",
+      "name": "events",
+      "components": [
+        {
+          "type": "kendo-ui-mobile:editableList",
+          "listExtraFields": [],
+          "detailExtraFields": [],
+          "components": [],
+          "name": "eventsModel",
+          "dataProvider": "progressExchange2016Novo",
+          "collection": "Event",
+          "headerField": "Name",
+          "iconField": false,
+          "imageField": "Icon",
+          "subHeaderField": "Date",
+          "pullToRefresh": false,
+          "endlessScroll": false,
+          "deleteItemButton": false,
+          "detailHeaderFieldSource": "static",
+          "detailHeaderFieldValue": "Detail",
+          "addItemForm": false,
+          "editItemForm": false
+        }
+      ],
+      "title": "Events",
+      "addToNavigation": false
+    },
+    {
+      "type": "kendo-ui-mobile:view",
+      "name": "conferences",
+      "components": [
+        {
+          "type": "kendo-ui-mobile:editableList",
+          "listExtraFields": [],
+          "detailExtraFields": [],
+          "components": [],
+          "name": "conferencesModel",
+          "dataProvider": "progressExchange2016Novo",
+          "collection": "Conference",
+          "headerField": "Name",
+          "iconField": true,
+          "subHeaderField": "Time",
+          "group": "Track",
+          "pullToRefresh": false,
+          "endlessScroll": false,
+          "deleteItemButton": false,
+          "detailHeaderFieldSource": "static",
+          "detailSubHeaderField": "Name",
+          "detailDescriptionField": "Description",
+          "detailImageField": "Photo",
+          "addItemForm": false,
+          "editItemForm": false
+        }
+      ],
+      "title": "Conferences",
+      "addToNavigation": true,
+      "icon": "globe"
+    }
+  ],
   "dataProviders": [
     {
-      "type": "dataProvider",
-      "title": "DefaultProvider",
-      "name": "defaultProvider",
+      "type": "kendo-ui-mobile:dataProvider",
+      "name": "progressExchange2016Novo",
+      "title": "Progress Exchange 2016 Novo / Progress Exchange 2016 Novo",
       "source": "everlive",
-      "offlineStorage": true,
-      "everliveKey": "7RdaQT8Mej77w11z",
-      "everliveUrl": ""
+      "everliveKey": "3endia9jhpft7rtk",
+      "offlineStorage": true
     }
-  ]
+  ],
+  "name": "kendoUiMobileApp",
+  "navigation": "tabstrip",
+  "view": "home",
+  "transition": "slide",
+  "showMoreTab": false,
+  "skin": "nova",
+  "skinMainColor": "#5ce500",
+  "skinTextColor": "#ffffff",
+  "skinAccentColor": "#006f62"
 }

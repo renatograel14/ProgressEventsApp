@@ -1,1 +1,37 @@
-{}
+{
+  "CordovaPluginVariables": {
+    "com.telerik.feedback": {
+      "API_KEY": "3endia9jhpft7rtk",
+      "API_URL": "https://platform.telerik.com/feedback/api/v1",
+      "ENABLE_SHAKE": "True"
+    },
+    "com.telerik.plugin.telerikanalytics": {
+      "AUTO_TRACK_EXCEPTIONS": "True",
+      "AUTO_TRACK_KENDO_EVENTS": "True",
+      "PRODUCT_ID": "1dc7b41422c84a11996446b0df72847d"
+    }
+  },
+  "CorePlugins": [
+    "com.telerik.feedback@2.0.1",
+    "com.telerik.plugin.telerikanalytics@3.4.1",
+    "cordova-plugin-battery-status",
+    "cordova-plugin-camera",
+    "cordova-plugin-contacts",
+    "cordova-plugin-device",
+    "cordova-plugin-device-motion",
+    "cordova-plugin-device-orientation",
+    "cordova-plugin-dialogs",
+    "cordova-plugin-file",
+    "cordova-plugin-file-transfer",
+    "cordova-plugin-geolocation",
+    "cordova-plugin-globalization",
+    "cordova-plugin-inappbrowser",
+    "cordova-plugin-media",
+    "cordova-plugin-media-capture",
+    "cordova-plugin-network-information",
+    "cordova-plugin-splashscreen",
+    "cordova-plugin-statusbar",
+    "cordova-plugin-vibration",
+    "cordova-plugin-whitelist"
+  ]
+}

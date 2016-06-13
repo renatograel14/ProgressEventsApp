@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <meta charset="utf-8">
+    <link href="kendo/styles/kendo.mobile.all.min.css" rel="stylesheet">
+    <link href="styles/overrides.css" rel="stylesheet">
+    <link href="styles/main.css" rel="stylesheet">
+    <script src="cordova.js"></script>
+    <script src="kendo/js/jquery.min.js"></script>
+    <script src="kendo/js/kendo.mobile.min.js"></script>
+    <script src="http://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true"></script>
+    <script src="scripts/identity-provider.js"></script>
+    <script src="app.js"></script>
+    <script src="bower_components/everlive/min/everlive.all.min.js"></script>
+    <script src="dataProviders/progressExchange2016Novo.js"></script>
+</head>
+
+<body id="kendoUiMobileApp">
+    <script src="components/conferences/index.js"></script>
+    <script src="components/events/index.js"></script>
+    <script src="components/loginView/index.js"></script>
+    <script src="components/home/index.js"></script>
+    <script src="components/location/index.js"></script>
+    <div data-role="layout" data-id="main">
+        <header data-role="header">
+            <div data-role="navbar" id="navbar">
+                <span data-role="view-title"></span>
+            </div>
+        </header>
+        <footer data-role="footer">
+            <div data-role="tabstrip" id="navigation-container">
+                <a href="components/home/view.html" data-icon="home">Register</a>
+                <a href="components/conferences/view.html" data-icon="conference">Conferences</a>
+                <a href="components/location/view.html" data-icon="location">Event Location</a>
+                <a href="components/events/view.html" data-icon="globe">Next Events</a>
+                <a href="components/loginView/view.html?logout=true" data-position="end" data-icon="action">Logout</a>
+            </div>
+        </footer>
+    </div>
+    <div data-role="layout" data-id="main-nonav">
+        <header data-role="header">
+            <div data-role="navbar">
+                <span data-role="view-title"></span>
+            </div>
+        </header>
+        <footer data-role="footer">
+            <div data-role="tabstrip" id="navigation-container">
+                <a href="components/loginView/view.html?logout=true" data-position="end" data-icon="action">Logout</a>
+            </div>
+        </footer>
+    </div>
+    <div data-role="layout" data-id="main-login">
+        <header data-role="header">
+            <div data-role="navbar">
+                <span data-role="view-title"></span>
+            </div>
+        </header>
+        <footer data-role="footer">
+        </footer>
+    </div>
+    <!-- START_CUSTOM_CODE_kendoUiMobileApp -->
+    <!-- Add custom code here. For more information about custom code, see http://docs.telerik.com/platform/screenbuilder/troubleshooting/how-to-keep-custom-code-changes -->
+    <!-- END_CUSTOM_CODE_kendoUiMobileApp -->
+</body>
+
+</html>

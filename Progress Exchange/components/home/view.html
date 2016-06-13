@@ -1,0 +1,16 @@
+<div id="homeView" data-role="view" data-title="" data-layout="main" data-model="app.home" data-show="app.home.onShow" data-after-show="app.home.afterShow">
+    <!-- START_CUSTOM_CODE_home -->
+    <div class="details-content">
+        <h3>
+        	<img data-bind="attr: { src: homeModel.currentEvent.minIconURL }" width="50%" height="auto">    
+        </h3>
+        <h3 data-bind="text: homeModel.currentEvent.Description">
+        </h3>
+        <p data-bind="text: homeModel.currentEvent.Location">
+        </p>
+    </div>
+    <div class="button-group button-group-vertical">
+        <a data-role="button" class="primary" onclick="app.home.homeModel.openLink();">Inscreva-se</a>
+    </div>
+    <!-- END_CUSTOM_CODE_home -->
+</div>

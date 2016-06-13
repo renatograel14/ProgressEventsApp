@@ -1,0 +1,76 @@
+<div data-role="view" data-layout="main-login" data-model="app.loginView" data-show="app.loginView.onShow" data-after-show="app.loginView.afterShow">
+    <div class="signin-view">
+        <form>
+            <ul data-role="listview" data-style="inset" >
+                <li>
+                	<img src="resources/progress-events-logo.png" style="display: block; margin: 0 auto;"  width="80%">
+                </li>
+                <li>
+                    <label>Email
+                        <input type="email" data-bind="value: loginViewModel.email" required autofocus>
+                    </label>
+                </li>
+                <li>
+                    <label>Password
+                        <input type="password" data-bind="value: loginViewModel.password" required>
+                    </label>
+                </li>
+                <li>
+                    <label>Remember Me
+                        <input type="checkbox" data-bind="checked: loginViewModel.rememberme">
+                    </label>
+                </li>
+            </ul>
+
+            <div class="button-group button-group-vertical">
+                <a data-role="button" class="primary" data-bind="events: { click: loginViewModel.signin }">Sign In</a>
+
+                <a data-role="button" data-bind="events: { click: loginViewModel.toggleView }">Resgistrar</a>
+
+                <a data-role="button" class="primary" data-bind="events: { click: loginViewModel.facebookLogin }">Entrar com Facebook</a>
+            </div>
+        </form>
+    </div>
+    <div class="signup-view" style="display:none;">
+        <form>
+            <ul data-role="listview" data-style="inset">
+                <li>
+                    <label>Email
+                        <input type="email" data-bind="value: loginViewModel.email" required>
+                    </label>
+                </li>
+                <li>
+                    <label>Password
+                        <input type="password" data-bind="value: loginViewModel.password">
+                    </label>
+                </li>
+                <li>
+                    <label>Name
+                        <input type="text" data-bind="value: loginViewModel.displayName" required>
+                    </label>
+                </li>
+                <li>
+                    <label>Company
+                        <input type="text" data-bind="value: loginViewModel.company" required>
+                    </label>
+                </li>
+            </ul>
+            <div class="button-group button-group-vertical">
+                <a class="primary" data-role="button" data-bind="events: { click: loginViewModel.register }">Registrar</a>
+                <a data-role="button" data-bind="events: { click: loginViewModel.toggleView }">Sign In</a>
+            </div>
+        </form>
+    </div>
+    <div class="offline" align="center" style="display:none;">
+        You are currently offline. Before using this app in offline mode you must initialize it while you are online
+    </div>
+    <!-- START_CUSTOM_CODE_loginViewModel -->
+    <!-- Add custom code here. For more information about custom code, see http://docs.telerik.com/platform/screenbuilder/troubleshooting/how-to-keep-custom-code-changes -->
+
+    <!-- END_CUSTOM_CODE_loginViewModel -->
+
+    <!-- START_CUSTOM_CODE_loginView -->
+    <!-- Add custom code here. For more information about custom code, see http://docs.telerik.com/platform/screenbuilder/troubleshooting/how-to-keep-custom-code-changes -->
+
+    <!-- END_CUSTOM_CODE_loginView -->
+</div>
