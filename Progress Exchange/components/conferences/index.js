@@ -61,6 +61,43 @@ app.conferences = kendo.observable({
                 }
             }
         },
+        ratingDataSourceOpitions = {
+            type: 'everlive',
+            transport: {
+                typeName: 'Rating',
+                dataProvider: dataProvider
+            },
+            change: function (e) {
+                console.log(e);
+            },
+            error: function (e) {
+
+                if (e.xhr) {
+                    alert(JSON.stringify(e.xhr));
+                }
+            },
+            schema: {
+                model: {
+                    fields: {
+                        'Conference': {
+                            field: 'Conference',
+                            defaultValue: ''
+                        },
+                        'Rate': {
+                            field: 'Rate',
+                            defaultValue: ''
+                        },
+                        'Owner': {
+                            field: 'Owner',
+                            defaultValue: ''
+                        },
+
+                    }
+                }
+            },
+            serverFiltering: true,
+        },
+        ratingDataSource = new kendo.data.DataSource(ratingDataSourceOpitions),
         dataSourceOptions = {
             type: 'everlive',
             transport: {
@@ -108,6 +145,44 @@ app.conferences = kendo.observable({
             serverFiltering: true,
         },
         dataSource = new kendo.data.DataSource(dataSourceOptions),
+        addNewRating = function(value){
+
+            var rateArray = ['Ruim D:', 'Insatisfatório :(', 'Regular :|', 'Bom :)', 'Excelente :D'];
+            var item = conferencesModel.get('currentItem');
+            var stringRate = 'Confirma?\n "Achei essa conferência ' + rateArray[value-1] + '"';
+
+            ratingDataSource.query({
+                filter: [{ field: "Owner",      operator: "eq", value: app.user.Id    },
+                         { field: "Conference", operator: "eq", value: item.Id        }]
+            }).then(function(e){
+                console.log(ratingDataSource.view());
+
+                if(ratingDataSource.view().length==0){
+                    var confirma = confirm(stringRate) ? createRating(value) : false;
+                } else { 
+                    alert('Você já avaliou essa conferência! Obrigado! :)');
+                };
+            });
+        },
+        createRating = function(value){
+            var item = conferencesModel.get('currentItem');
+            var addModel = {
+                    Rate: value,
+                    Conference: item.Id,
+                    Owner: app.user.Id
+                },
+                filter = conferencesModel && conferencesModel.get('paramFilter'),
+                dataSource = ratingDataSource;
+            
+            dataSource.add(addModel);
+
+            dataSource.one('change', function(e) {
+                console.log(e);
+            });
+
+            dataSource.sync();
+
+        },
         conferencesModel = kendo.observable({
             dataSource: dataSource,
             itemClick: function (e) {
@@ -131,7 +206,7 @@ app.conferences = kendo.observable({
                 };
 
                 // rating instance
-                var myRating = rating(el, currentRating, maxRating, callback);
+                var myRating = rating(el, currentRating, maxRating, addNewRating);
             },
             detailsShow: function (e) {
                 var item = e.view.params.uid,
