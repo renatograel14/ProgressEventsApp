@@ -1,0 +1,21 @@
+<div data-role="view" data-title="Agenda" data-layout="main" data-model="app.agenda" data-show="app.agenda.onShow" data-after-show="app.agenda.afterShow">
+
+    <!-- START_CUSTOM_CODE_agenda -->
+    <!-- Add custom code here. For more information about custom code, see http://docs.telerik.com/platform/screenbuilder/troubleshooting/how-to-keep-custom-code-changes -->
+
+    <!-- END_CUSTOM_CODE_agenda -->
+    <ul id="listviewAgenda" data-role="listview" data-style="inset" data-template="agendaModelTemplate" data-bind="{ source: agendaModel.dataSource, events: {click: agendaModel.itemClick} }" data-pull-to-refresh="true" data-endless-scroll="false">
+    </ul>
+    <!-- START_CUSTOM_CODE_agendaModel -->
+    <!-- END_CUSTOM_CODE_agendaModel -->
+    <script type="text/x-kendo-template" id="agendaModelTemplate">
+        <div class=".listView-with-button">        
+            <div  class="image-with-text">
+                <h3>#: data['Name'] #  </h3>
+                <p>#: data['Track'] #</p>
+            </div>
+            <a id="popOverButton" data-role="button" data-icon="delete"></a>
+        </div>
+    </script>
+</div>
+
