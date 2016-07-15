@@ -15,6 +15,27 @@ app.agenda = kendo.observable({
 // START_CUSTOM_CODE_agendaModel
 (function(parent) {
     var agendaProvider = app.data.localStorage,
+    fetchFilteredData = function (paramFilter, searchFilter) {
+        var model = parent.get('agendaModel'),
+        dataSource = model.get('dataSource');
+
+        if (paramFilter) {
+            model.set('paramFilter', paramFilter);
+        } else {
+            model.set('paramFilter', undefined);
+        }
+
+        if (paramFilter && searchFilter) {
+            dataSource.filter({
+                logic: 'and',
+                filters: [paramFilter, searchFilter]
+            });
+        } else if (paramFilter || searchFilter) {
+            dataSource.filter(paramFilter || searchFilter);
+        } else {
+            dataSource.filter({});
+        }
+    },
     agendaModel = kendo.observable({
         dataSource: agendaProvider.dataSource,
         listView: $("#listviewAgenda").data("kendoMobileListView"),
@@ -56,7 +77,15 @@ app.agenda = kendo.observable({
         currentItem: null
     });
 
+    parent.set('onShow', function (e) {
+        var param = {
+            field: "Event",
+            operator: "eq",
+            value: app.currentEvent.Id
+        };
 
+        fetchFilteredData(param);
+    });
     parent.set('agendaModel', agendaModel);
 })(app.agenda);
 // END_CUSTOM_CODE_agendaModel

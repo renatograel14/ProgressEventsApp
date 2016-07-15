@@ -237,9 +237,10 @@ app.conferences = kendo.observable({
 
                 var newItem = {
                     conferenceID: conferencesModel.currentItem.id,
-                    Date: conferencesModel.currentItem.Time,
+                    Time: conferencesModel.currentItem.Time,
                     Name: conferencesModel.currentItem.Name,
                     Track: conferencesModel.currentItem.Track,
+                    Event: conferencesModel.currentItem.Event
                 }
                 console.log(conferencesModel.currentItem);
 

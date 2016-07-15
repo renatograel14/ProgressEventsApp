@@ -41,6 +41,9 @@
 				options.success(options.data);
 			}
 		},
+		group: {
+			field: 'Time'
+		},
 		schema: {
 			model: {
 				id: 'ID'
