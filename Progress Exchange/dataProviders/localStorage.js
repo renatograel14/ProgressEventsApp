@@ -5,10 +5,7 @@
 	// set data if is undefined
 	// localStorage.clear();
 	function setNew(){
-		if(!localStorage["agenda"]){
-			localStorage["agenda"] = JSON.stringify([]);
-			console.log(localStorage['agenda']);
-		}
+		
 	}
 
 
@@ -56,13 +53,18 @@
 		dataSource: new kendo.data.DataSource(localStorageOptions),
 		resetData: function(callback){
 			localStorage.clear();
-			setNew();
+			if(!localStorage["agenda"]){
+                localStorage["agenda"] = JSON.stringify([]);
+                console.log(localStorage['agenda']);
+            }
+            if(!!callback) callback();
 		},
 		isReady: function(){
 			return localStorage['agenda'];
 		}
 	}
 
+    // provider.resetData();
 	if(!provider.isReady){
 		provider.resetData();
 	}

@@ -48,6 +48,11 @@ app.agenda = kendo.observable({
                 agendaModel.delete();
             }
         },
+        clearAgenda: function(){
+          	agendaProvider.resetData(function callback(){
+                agendaProvider.dataSource.read();
+            });
+        },
         currentItem: null
     });
 

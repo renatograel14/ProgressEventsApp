@@ -12,8 +12,6 @@
     }
   },
   "CorePlugins": [
-    "com.telerik.feedback@2.0.1",
-    "com.telerik.plugin.telerikanalytics@3.4.1",
     "cordova-plugin-battery-status",
     "cordova-plugin-camera",
     "cordova-plugin-contacts",
