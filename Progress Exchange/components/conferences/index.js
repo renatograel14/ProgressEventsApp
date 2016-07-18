@@ -75,7 +75,7 @@ app.conferences = kendo.observable({
         error: function (e) {
 
             if (e.xhr) {
-                alert(JSON.stringify(e.xhr));
+                navigator.notification.alert(JSON.stringify(e.xhr));
             }
         },
         schema: {
@@ -167,9 +167,12 @@ app.conferences = kendo.observable({
             if(ratingDataSource.view().length==0){
                 var confirma = confirm(stringRate) ? createRating(value) : false;
             } else { 
-                alert('Você já avaliou essa conferência! Obrigado! :)');
+                navigator.notification.alert('Você já avaliou essa conferência! Obrigado! :)');
             };
         });
+
+        $("#ratePopuover").data("kendoMobilePopOver").close(); //detach events
+
     },
     createRating = function(value){
         var item = conferencesModel.get('currentItem');
@@ -194,11 +197,13 @@ app.conferences = kendo.observable({
         dataSource: dataSource,
         itemClick: function (e) {
 
-            app.mobileApp.navigate('#components/conferences/details.html?uid=' + e.dataItem.uid);
+            app.mobileApp.navigate('#components/conferences/details.html?id=' + e.dataItem.id);
 
         },
+        myRating: null,
         rateShow: function (e) {
                 // target element
+                console.log('pop');
                 var el = $('#ratingStars');
 
                 // current rating, or initial rating
@@ -207,18 +212,13 @@ app.conferences = kendo.observable({
                 // max rating, i.e. number of stars you want
                 var maxRating = 5;
 
-                // callback to run after setting the rating
-                var callback = function (rating) {
-                    alert(rating);
-                };
-
                 // rating instance
-                var myRating = rating(el, currentRating, maxRating, addNewRating);
+                conferencesModel.set('myRating', rating(el, currentRating, maxRating, addNewRating));
             },
             detailsShow: function (e) {
-                var item = e.view.params.uid,
+                var item = e.view.params.id,
                 dataSource = conferencesModel.get('dataSource'),
-                itemModel = dataSource.getByUid(item);
+                itemModel = dataSource.get(item);
                 itemModel.PhotoUrl = processImage(itemModel.Photo);
 
                 if (!itemModel.Name) {
@@ -230,36 +230,36 @@ app.conferences = kendo.observable({
             },
             currentItem: null,
             checkAgenda: function(){
-                 return !!localStorage.get(conferencesModel.currentItem.id);
-            },
-            addItem: function() {
-                console.log('adding...');
+               return !!localStorage.get(conferencesModel.currentItem.id);
+           },
+           addItem: function() {
+            console.log('adding...');
 
-                var newItem = {
-                    conferenceID: conferencesModel.currentItem.id,
-                    Time: conferencesModel.currentItem.Time,
-                    Name: conferencesModel.currentItem.Name,
-                    Track: conferencesModel.currentItem.Track,
-                    Event: conferencesModel.currentItem.Event
-                }
-                console.log(conferencesModel.currentItem);
+            var newItem = {
+                conferenceID: conferencesModel.currentItem.id,
+                Time: conferencesModel.currentItem.Time,
+                Name: conferencesModel.currentItem.Name,
+                Track: conferencesModel.currentItem.Track,
+                Event: conferencesModel.currentItem.Event
+            }
+            console.log(conferencesModel.currentItem);
 
-                if(conferencesModel.checkAgenda()){
-                    app.notification.show('Conferência já está na agenda! :)');
-                } else {
-                    agendaDataSource.dataSource.add(newItem);
-                    agendaDataSource.dataSource.sync();
-                    app.notification.show('Conferência adicionada à Agenda');
-
-                }
-
-            },
-            deleteItem: function() {
-                var agendaItem = agendaDataSource.dataSource.get(conferencesModel.currentItem.Id);
-                agendaDataSource.dataSource.remove(agendaItem);
+            if(conferencesModel.checkAgenda()){
+                app.notification.show('Conferência já está na agenda! :)');
+            } else {
+                agendaDataSource.dataSource.add(newItem);
                 agendaDataSource.dataSource.sync();
-            },
-        });
+                app.notification.show('Conferência adicionada à Agenda');
+
+            }
+
+        },
+        deleteItem: function() {
+            var agendaItem = agendaDataSource.dataSource.get(conferencesModel.currentItem.Id);
+            agendaDataSource.dataSource.remove(agendaItem);
+            agendaDataSource.dataSource.sync();
+        },
+    });
 
     if (typeof dataProvider.sbProviderReady === 'function') {
         dataProvider.sbProviderReady(function dl_sbProviderReady() {

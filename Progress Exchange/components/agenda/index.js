@@ -40,7 +40,6 @@ app.agenda = kendo.observable({
         dataSource: agendaProvider.dataSource,
         listView: $("#listviewAgenda").data("kendoMobileListView"),
         delete: function() {
-            // console.log(agendaModel.currentItem);
             var dataSource = agendaModel.get('dataSource');
 
 
@@ -67,15 +66,18 @@ app.agenda = kendo.observable({
                 agendaModel.set('currentItem', null);
                 agendaModel.set('currentItem', itemModel);
                 agendaModel.delete();
+            } else { 
+                console.log(e);
+                app.mobileApp.navigate('#components/conferences/details.html?id=' + e.dataItem.ID);
             }
         },
         clearAgenda: function(){
-          	agendaProvider.resetData(function callback(){
-                agendaProvider.dataSource.read();
-            });
-        },
-        currentItem: null
-    });
+            agendaProvider.resetData(function callback(){
+            agendaProvider.dataSource.read();
+        });
+       },
+       currentItem: null
+   });
 
     parent.set('onShow', function (e) {
         var param = {

@@ -1,8 +1,8 @@
 (function (global) {
     var map,
-        geocoder,
-        LocationViewModel,
-        app = global.app = global.app || {};
+    geocoder,
+    LocationViewModel,
+    app = global.app = global.app || {};
     LocationViewModel = kendo.data.ObservableObject.extend({
         _lastMarker: null,
         _isLoading: false,
@@ -12,6 +12,7 @@
         hideSearch: false,
         positionDestiny: function () {
             return new google.maps.LatLng(app.currentEvent.LocationGoogle.lat, app.currentEvent.LocationGoogle.lgn);
+            // return new google.maps.LatLng(-23.581136, -46.667009);
         },
         onNavigateHome: function () {
             var that = this;
@@ -27,6 +28,7 @@
 
         },
         getDirections: function () {
+
             var that = this;
 
             var directionsService = new google.maps.DirectionsService();
@@ -38,6 +40,7 @@
 
             navigator.geolocation.getCurrentPosition(
                 function (position) {
+                    console.log('get position', position);
 
                     start = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
                     var request = {
@@ -53,14 +56,16 @@
                     });
                 },
                 function (error) {
+                    console.log('err');
                     navigator.notification.alert("Unable to determine current location. Cannot connect to GPS satellite.",
                         function () {}, "Location failed", 'OK');
+                    console.log('errou!');
                     return null;
                 }, {
                     timeout: 30000,
                     enableHighAccuracy: true
                 }
-            );
+                );
 
 
 
@@ -93,11 +98,12 @@
     app.locationService = {
         initLocation: function () {
             var mapOptions,
-                streetView;
+            streetView;
 
             if (typeof google === "undefined") {
                 return;
             }
+
 
             app.locationService.viewModel.set("isGoogleMapsInitialized", true);
             mapOptions = {
