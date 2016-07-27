@@ -20,7 +20,7 @@ app.loginView = kendo.observable({
         init = function (error) {
             if (error) {
                 if (error.message) {
-                    alert(error.message);
+					app.notification.show(error.message);
                 }
                 return false;
             }
@@ -154,7 +154,7 @@ app.loginView = kendo.observable({
                 if (!model.validateData(model)) {
                     return false;
                 }
-
+				mode = mode === 'signin' ? 'register' : 'signin';
                 provider.Users.register(email, password, attrs, successHandler, init);
             },
             toggleView: function () {

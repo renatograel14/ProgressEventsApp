@@ -3,7 +3,7 @@
 (function() {
     var provider = app.data.progressExchange2016Novo = new Everlive({
             offlineStorage: true,
-            appId: '3endia9jhpft7rtk',
+            appId: 'ku3z7fr6f4dbzjmt',
             scheme: 'https',
             authentication: {
                 persist: true

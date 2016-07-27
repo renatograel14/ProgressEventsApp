@@ -223,7 +223,7 @@ app.conferences = kendo.observable({
                     maxRating = 5;
 
                 var  rateObject = rating(el, currentRating, maxRating, addNewRating);
-
+				
                 
 
                 var item = e.view.params.id,
@@ -234,10 +234,8 @@ app.conferences = kendo.observable({
                 if (!itemModel.Name) {
                     itemModel.Name = String.fromCharCode(160);
                 }
-
                 conferencesModel.set('currentItem', null);
-                conferencesModel.set('currentItem', itemModel);
-                
+                conferencesModel.set('currentItem', itemModel);                
                 conferencesModel.set('myRating', rateObject);
             },
             currentItem: null,

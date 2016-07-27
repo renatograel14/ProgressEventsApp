@@ -1,7 +1,7 @@
 {
   "CordovaPluginVariables": {
     "com.telerik.feedback": {
-      "API_KEY": "3endia9jhpft7rtk",
+      "API_KEY": "ku3z7fr6f4dbzjmt",
       "API_URL": "https://platform.telerik.com/feedback/api/v1",
       "ENABLE_SHAKE": "True"
     },
@@ -12,6 +12,7 @@
     }
   },
   "CorePlugins": [
+    "com.telerik.feedback@2.0.1",
     "cordova-plugin-battery-status",
     "cordova-plugin-camera",
     "cordova-plugin-console",
