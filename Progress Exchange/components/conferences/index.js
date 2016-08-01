@@ -158,20 +158,18 @@ app.conferences = kendo.observable({
             var item = conferencesModel.get('currentItem');
             var stringRate = 'Confirma?\n "Achei essa conferência ' + rateArray[value - 1] + '"';
 
-            console.log('user:',app.user);
-            
             ratingDataSource.query({
                 filter: [{
                     field: "Owner",
                     operator: "eq",
-                    value: app.user.Id || app.user.principal_id
+                    value: app.user.Id
                 }, {
                     field: "Conference",
                     operator: "eq",
                     value: item.Id
                 }]
             }).then(function(e) {
-                console.log(ratingDataSource.view());
+                
                 if (ratingDataSource.view().length == 0) {
                     var confirma = confirm(stringRate) ? createRating(value) : false;
                 } else {
@@ -186,7 +184,7 @@ app.conferences = kendo.observable({
             var addModel = {
                     Rate: value,
                     Conference: item.Id,
-                    Owner: app.user.Id || app.user.principal_id
+                    Owner: app.user.Id
                 },
                 filter = conferencesModel && conferencesModel.get('paramFilter'),
                 dataSource = ratingDataSource;
@@ -228,7 +226,7 @@ app.conferences = kendo.observable({
                     filter: [{
                         field: "Owner",
                         operator: "eq",
-                        value: app.user.Id || app.user.principal_id
+                        value: app.user.Id
                     }, {
                         field: "Conference",
                         operator: "eq",
