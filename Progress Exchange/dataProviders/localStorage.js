@@ -63,7 +63,7 @@
             if(!!callback) callback();
 		},
 		isReady: function(){
-			return localStorage['agenda'];
+			return !!localStorage['agenda'];
 		}
 	}
 

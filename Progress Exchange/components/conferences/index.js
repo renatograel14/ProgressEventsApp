@@ -158,28 +158,26 @@ app.conferences = kendo.observable({
             var item = conferencesModel.get('currentItem');
             var stringRate = 'Confirma?\n "Achei essa conferência ' + rateArray[value - 1] + '"';
 
+            console.log('user:',app.user);
+            
             ratingDataSource.query({
                 filter: [{
                     field: "Owner",
                     operator: "eq",
-                    value: app.user.Id
+                    value: app.user.Id || app.user.principal_id
                 }, {
                     field: "Conference",
                     operator: "eq",
                     value: item.Id
                 }]
             }).then(function(e) {
-                
+                console.log(ratingDataSource.view());
                 if (ratingDataSource.view().length == 0) {
                     var confirma = confirm(stringRate) ? createRating(value) : false;
                 } else {
                     navigator.notification.alert('Você já avaliou essa conferência! Obrigado! :)');
                 };
             });
-            if (conferencesModel.myRating) {
-                    console.log(conferencesModel.myRating);
-                    conferencesModel.myRating.setRating(0, false);
-            }
             $("#ratePopuover").data("kendoMobilePopOver").close(); //detach events
 
         },
@@ -209,21 +207,11 @@ app.conferences = kendo.observable({
 
             },
             myRating: null,
-            rateShow: function(e) {
-                // var el = $('#ratingStars'),
-                //     currentRating = 0,
-                //     maxRating = 5;
-                // var  rateObject = rating(el, currentRating, maxRating, addNewRating);
-                // conferencesModel.set('myRating', rateObject);
-
-            },
+            rateShow: function(e) {},
             detailsShow: function(e) {
                 var el = $('#ratingStars'),
                     currentRating = 0,
                     maxRating = 5;
-
-                var  rateObject = rating(el, currentRating, maxRating, addNewRating);
-				
                 
 
                 var item = e.view.params.id,
@@ -234,9 +222,33 @@ app.conferences = kendo.observable({
                 if (!itemModel.Name) {
                     itemModel.Name = String.fromCharCode(160);
                 }
-                conferencesModel.set('currentItem', null);
-                conferencesModel.set('currentItem', itemModel);                
-                conferencesModel.set('myRating', rateObject);
+
+
+                ratingDataSource.query({
+                    filter: [{
+                        field: "Owner",
+                        operator: "eq",
+                        value: app.user.Id || app.user.principal_id
+                    }, {
+                        field: "Conference",
+                        operator: "eq",
+                        value: itemModel.Id
+                    }]
+                }).then(function(e) {
+                    var  rateObject = null;
+                    if (ratingDataSource.view().length == 0) {
+                        rateObject = rating(el, currentRating, maxRating, addNewRating);
+                    } else {
+                        var rateValue = ratingDataSource.view()[0].Rate;
+                        rateObject = rating(el, rateValue, maxRating, addNewRating);
+                    };
+
+                    conferencesModel.set('currentItem', null);
+                    conferencesModel.set('currentItem', itemModel);
+                    conferencesModel.set('myRating', rateObject);
+                    
+                });
+                
             },
             currentItem: null,
             checkAgenda: function() {

@@ -155,7 +155,7 @@ app.loginView = kendo.observable({
                     return false;
                 }
 				mode = mode === 'signin' ? 'register' : 'signin';
-                provider.Users.register(email, password, attrs, successHandler, init);
+                provider.Users.register(email, password, attrs, loginViewModel.signin, init);
             },
             toggleView: function () {
                 mode = mode === 'signin' ? 'register' : 'signin';

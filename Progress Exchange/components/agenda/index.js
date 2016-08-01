@@ -14,8 +14,8 @@ app.agenda = kendo.observable({
 
 // START_CUSTOM_CODE_agendaModel
 (function(parent) {
-    var agendaProvider = app.data.localStorage,
-    fetchFilteredData = function (paramFilter, searchFilter) {
+    var agendaProvider = app.data.localStorage;
+    var fetchFilteredData = function (paramFilter, searchFilter) {
         var model = parent.get('agendaModel'),
         dataSource = model.get('dataSource');
 
@@ -41,7 +41,6 @@ app.agenda = kendo.observable({
         listView: $("#listviewAgenda").data("kendoMobileListView"),
         delete: function() {
             var dataSource = agendaModel.get('dataSource');
-
 
             dataSource.remove(agendaModel.currentItem);
 
