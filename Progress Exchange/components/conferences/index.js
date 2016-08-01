@@ -186,7 +186,7 @@ app.conferences = kendo.observable({
             var addModel = {
                     Rate: value,
                     Conference: item.Id,
-                    Owner: app.user.Id
+                    Owner: app.user.Id || app.user.principal_id
                 },
                 filter = conferencesModel && conferencesModel.get('paramFilter'),
                 dataSource = ratingDataSource;
