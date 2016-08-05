@@ -3,9 +3,9 @@
   "ProjectGuid": "5be59ae3-4e2a-4d68-8f56-9ffd6c7c383b",
   "projectVersion": 1,
   "AppIdentifier": "com.telerik.ProgressExchange2016Novo",
-  "DisplayName": "Progress Exchange 2016 Novo",
+  "DisplayName": "Progress Exchange",
   "Author": "",
-  "Description": "Progress Exchange 2016 Novo",
+  "Description": "Progress Exchange",
   "BundleVersion": "1.0",
   "AndroidVersionCode": "1",
   "iOSDeviceFamily": [

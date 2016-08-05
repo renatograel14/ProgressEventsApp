@@ -1,10 +1,10 @@
-<div data-role="view" data-title="Conferências" data-layout="main" data-model="app.conferences" data-show="app.conferences.onShow" data-after-show="app.conferences.afterShow">
+<div data-role="view" data-title="Palestras" data-layout="main" data-model="app.conferences" data-show="app.conferences.onShow" data-after-show="app.conferences.afterShow">
 
     <!-- START_CUSTOM_CODE_conferences -->
     <!-- Add custom code here. For more information about custom code, see http://docs.telerik.com/platform/screenbuilder/troubleshooting/how-to-keep-custom-code-changes -->
 
     <!-- END_CUSTOM_CODE_conferences -->
-    <ul data-role="listview" data-auto-bind="false" data-style="inset" data-template="conferencesModelTemplate" data-bind="{ source: conferencesModel.dataSource, events: {click: conferencesModel.itemClick} }" data-pull-to-refresh="false" data-endless-scroll="false">
+    <ul data-role="listview" data-auto-bind="false" data-style="inset" data-pull-to-refresh="true" data-template="conferencesModelTemplate" data-bind="{ source: conferencesModel.dataSource, events: {click: conferencesModel.itemClick} }" data-pull-to-refresh="false" data-endless-scroll="false">
     </ul>
     <!-- START_CUSTOM_CODE_conferencesModel -->
     <!-- Add custom code here. For more information about custom code, see http://docs.telerik.com/platform/screenbuilder/troubleshooting/how-to-keep-custom-code-changes -->
@@ -13,7 +13,7 @@
     <script type="text/x-kendo-template" id="conferencesModelTemplate">
         <div class="image-with-text">
             <h3><span data-bind="visible: true" class="#: data.iconAgenda() #"></span>#: data['Name'] #</h3>
-            <p><span class="#: data.iconTime() #"></span>#: data['Time'] #</p>
+            <p><span class="#: data.iconTime() #"></span>#: data['Track'] #</p>
             <p><span class="#: data.iconPresenter() #"></span>#: data['Presenter'] #</p>
         </div>
     </script>
