@@ -135,7 +135,7 @@ app.conferences = kendo.observable({
                         },
                     },
                     iconTime: function() {
-                        var i = 'time';
+                        var i = 'track';
                         return kendo.format('km-icon km-{0}', i);
                     },
                     iconPresenter: function() {
